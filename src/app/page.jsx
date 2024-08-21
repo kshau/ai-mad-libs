@@ -113,8 +113,8 @@ export default function Home() {
                 <CardContent>
                   <form>
                     <div className="flex flex-col gap-y-5">
-                      {madLibBlanks.map(blank => (
-                        <div className="flex flex-col gap-y-2">
+                      {madLibBlanks.map((blank, index) => (
+                        <div className="flex flex-col gap-y-2" key={index}>
                           <span className="font-bold">{formatBlankName(blank)}</span>
                           <Input className="w-40" maxLength={32} id="blank"/>
                         </div>
@@ -136,11 +136,11 @@ export default function Home() {
                 </CardHeader>
                 <CardContent className="flex flex-col">
                   <span className="text-xl">
-                    {getFilledMadLib().map((text) => (
+                    {getFilledMadLib().map((text, index) => (
                       (text.startsWith("__")) ? (
-                        <span className="underline font-bold">{text.replace("__", "")}</span>
+                        <span className="underline font-bold" key={index}>{text.replace("__", "")}</span>
                       ) : (
-                        <span>{text}</span>
+                        <span key={index}>{text}</span>
                       )
                     ))}
                   </span>
