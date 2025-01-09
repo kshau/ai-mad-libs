@@ -8,6 +8,11 @@ export async function POST(request) {
     const {topic} = await request.json();
 
     try {
+
+        if (topic.length > 32) {
+            throw "Mad Lib topic too long!";
+        }
+
         const madLibOutput = execSync(`npm run generate-mad-lib -- ${topic}`).toString();
 
         const madLibContent = getSubstringBetween(madLibOutput, "BEGIN", "END")
